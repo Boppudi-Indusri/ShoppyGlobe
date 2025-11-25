@@ -1,20 +1,34 @@
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 3 items per row */
-  gap: 20px;
-  padding: 20px;
-}
+import React, { useMemo } from "react";
+import useProducts from "../hooks/useProducts";
+import ProductItem from "./ProductItem";
+import { useSelector } from "react-redux";
 
-/* Tablet view (2 items per row) */
-@media (max-width: 900px) {
-  .product-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
+export default function ProductList() {
+  const { products, loading, error } = useProducts();
+  const query = useSelector(s => s.cart.searchQuery);
 
-/* Mobile view (1 item per row) */
-@media (max-width: 600px) {
-  .product-grid {
-    grid-template-columns: repeat(1, 1fr);
-  }
+  const filtered = useMemo(() => {
+    if (!query) return products;
+    const q = query.toLowerCase();
+    return products.filter(
+      p =>
+        p.title.toLowerCase().includes(q) ||
+        p.description.toLowerCase().includes(q)
+    );
+  }, [products, query]);
+
+  if (loading) return <div>Loading products...</div>;
+  if (error) return <div role="alert">Error loading products: {error}</div>;
+
+  return (
+    <div>
+      {/* Search bar removed from here */}
+      
+      <div className="product-grid">
+        {filtered.map(product => (
+          <ProductItem key={product.id} product={product} />
+        ))}
+      </div>
+    </div>
+  );
 }
