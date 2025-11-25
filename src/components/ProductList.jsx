@@ -1,38 +1,20 @@
-import React, { useMemo } from "react";
-import useProducts from "../hooks/useProducts";
-import ProductItem from "./ProductItem";
-import { useDispatch, useSelector } from "react-redux";
-import { setSearchQuery } from "../store/cartSlice";
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 3 items per row */
+  gap: 20px;
+  padding: 20px;
+}
 
-export default function ProductList() {
-  const { products, loading, error } = useProducts();
-  const dispatch = useDispatch();
-  const query = useSelector(s => s.cart.searchQuery);
+/* Tablet view (2 items per row) */
+@media (max-width: 900px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 
-  const filtered = useMemo(() => {
-    if (!query) return products;
-    const q = query.toLowerCase();
-    return products.filter(p => p.title.toLowerCase().includes(q) || p.description.toLowerCase().includes(q));
-  }, [products, query]);
-
-  if (loading) return <div>Loading products...</div>;
-  if (error) return <div role="alert">Error loading products: {error}</div>;
-
-  return (
-    <div>
-      <div style={{ marginBottom: 12 }}>
-        <input
-          aria-label="search"
-          placeholder="Search products..."
-          value={query}
-          onChange={e => dispatch(setSearchQuery(e.target.value))}
-        />
-      </div>
-      <div className="product-grid">
-        {filtered.map(product => (
-          <ProductItem key={product.id} product={product} />
-        ))}
-      </div>
-    </div>
-  );
+/* Mobile view (1 item per row) */
+@media (max-width: 600px) {
+  .product-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
