@@ -1,68 +1,121 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.product-item img {
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #ddd;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+/* Product detail page image */
+.detail-img {
+  width: 350px;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  margin: 20px auto;
+  background: #fff;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
 }
-a:hover {
-  color: #535bf2;
+
+/* === PRODUCT GRID LAYOUT === */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);   /* 4 products per row */
+  gap: 20px;                                /* spacing between cards */
+  padding: 20px;
+  justify-items: center;                    /* center products horizontally */
 }
+
+/* === PRODUCT CARD === */
+.product-item {
+  width: 100%;
+  max-width: 250px;
+  background: #ffffff;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0px 2px 8px rgba(0,0,0,0.15);
+  text-align: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Hover effect */
+.product-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 4px 15px rgba(0,0,0,0.25);
+}
+
+/* Product image */
+.product-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  border-radius: 10px;
+  background: #fff;
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+/* Title styling */
+.product-item h3 {
+  font-size: 18px;
+  margin-top: 10px;
+  color: #333;
+}
+
+/* Price styling */
+.product-item p {
+  font-size: 16px;
+  margin: 8px 0;
+  color: #444;
+}
+
+/* Add to cart button */
+.product-item button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  font-size: 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.product-item button:hover {
+  background: #1d4ed8;
+}
+
+/* View link */
+.product-item a {
+  display: inline-block;
+  margin-top: 8px;
+  color: #1d4ed8;
+  font-weight: bold;
+}
+
+/* === RESPONSIVE DESIGN === */
+
+/* Tablets — 2 per row */
+@media (max-width: 900px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile — 1 product per row */
+@media (max-width: 500px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 
 body {
+  background-color: lightgrey; /* soft light gray */
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+  padding: 0;
+  font-family: Arial, sans-serif;
 }
