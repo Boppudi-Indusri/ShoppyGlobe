@@ -1,0 +1,67 @@
+/* === CENTER THE CHECKOUT BOX === */
+.checkout-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;             /* full screen height */
+  background: #f1f5f9;       /* soft light background */
+}
+
+/* === BOX STYLING === */
+.checkout-box {
+  background: white;
+  padding: 30px;
+  width: 400px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+/* Title */
+.checkout-box h2 {
+  margin-bottom: 20px;
+  color: #1e40af;
+}
+
+/* === FORM STYLING === */
+.checkout-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.checkout-form label {
+  text-align: left;
+  font-weight: 600;
+}
+
+.checkout-form input,
+.checkout-form textarea {
+  padding: 10px;
+  border: 2px solid #c7d2fe;
+  border-radius: 6px;
+  font-size: 16px;
+  outline: none;
+}
+
+.checkout-form textarea {
+  height: 70px;
+  resize: none;
+}
+
+/* === BUTTON === */
+.checkout-form button {
+  margin-top: 10px;
+  padding: 12px;
+  background-color: #1e40af;
+  color: white;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.checkout-form button:hover {
+  background-color: #3b82f6;
+}
